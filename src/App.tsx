@@ -1,26 +1,30 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { connect, ConnectedProps } from 'react-redux';
 import logo from './logo.svg';
 import './App.css';
 import Modal from './components/Modal';
+import { showModal } from './store/actions';
 
-function App() {
-  const [showModal, setShowModal] = useState(false);
+const mapDispatchToProps = {
+  dispatchShowModal: showModal,
+};
+
+const connector = connect(undefined, mapDispatchToProps);
+
+type AppProps = {} & ConnectedProps<typeof connector>;
+
+function App(props: AppProps) {
+  const { dispatchShowModal } = props;
 
   return (
     <>
-      {showModal && (
-        <Modal
-          onCloseButtonClick={() => {
-            setShowModal(false);
-          }}
-        />
-      )}
+      <Modal />
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <button
             onClick={() => {
-              setShowModal(true);
+              dispatchShowModal();
             }}
           >
             Show Modal
@@ -31,4 +35,4 @@ function App() {
   );
 }
 
-export default App;
+export default connector(App);

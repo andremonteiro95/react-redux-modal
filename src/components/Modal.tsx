@@ -1,12 +1,31 @@
 import React from 'react';
+import { connect, ConnectedProps } from 'react-redux';
+import { hideModal } from '../store/actions';
+import { RootState } from '../store/reducers';
 import './Modal.css';
 
-type ModalProps = {
-  onCloseButtonClick: () => void;
+const mapStateToProps = (state: RootState) => ({
+  modal: state.modal.modal,
+});
+
+const mapDispatchToProps = {
+  dispatchHideModal: hideModal,
 };
 
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type ModalProps = {} & ConnectedProps<typeof connector>;
+
 function Modal(props: ModalProps) {
-  const { onCloseButtonClick } = props;
+  const { dispatchHideModal, modal } = props;
+
+  if (!modal) {
+    return null;
+  }
+
+  const onCloseButtonClick = () => {
+    dispatchHideModal();
+  };
 
   return (
     <div className="modal-overlay">
@@ -20,4 +39,4 @@ function Modal(props: ModalProps) {
   );
 }
 
-export default Modal;
+export default connector(Modal);
