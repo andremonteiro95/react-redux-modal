@@ -35,6 +35,9 @@ function Modal(props: ModalProps) {
         </span>
         <h1>{modal.title}</h1>
         <p>{modal.description}</p>
+        <button type="button" onClick={modal.onButtonClick}>
+          Do something
+        </button>
       </div>
     </div>
   );

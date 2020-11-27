@@ -27,6 +27,9 @@ function App(props: AppProps) {
               dispatchShowModal({
                 title: 'A new title.',
                 description: 'And a new description too.',
+                onButtonClick: (event: React.MouseEvent) => {
+                  alert('You clicked that button!');
+                },
               });
             }}
           >
