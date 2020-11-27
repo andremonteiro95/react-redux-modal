@@ -1,3 +1,5 @@
+import ModalProperties from '../interfaces/modal-properties';
+
 export enum ModalActionTypes {
   ShowModal,
   HideModal,
@@ -5,12 +7,13 @@ export enum ModalActionTypes {
 
 export interface ModalAction {
   type: ModalActionTypes;
-  payload?: any;
+  payload?: ModalProperties;
 }
 
-export function showModal(): ModalAction {
+export function showModal(payload: ModalProperties): ModalAction {
   return {
     type: ModalActionTypes.ShowModal,
+    payload,
   };
 }
 

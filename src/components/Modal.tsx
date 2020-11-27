@@ -33,7 +33,8 @@ function Modal(props: ModalProps) {
         <span className="modal-close" onClick={onCloseButtonClick}>
           &#10005; {/* HTML code for a multiplication sign */}
         </span>
-        This is my new modal!
+        <h1>{modal.title}</h1>
+        <p>{modal.description}</p>
       </div>
     </div>
   );

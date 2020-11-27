@@ -24,7 +24,10 @@ function App(props: AppProps) {
           <img src={logo} className="App-logo" alt="logo" />
           <button
             onClick={() => {
-              dispatchShowModal();
+              dispatchShowModal({
+                title: 'A new title.',
+                description: 'And a new description too.',
+              });
             }}
           >
             Show Modal
